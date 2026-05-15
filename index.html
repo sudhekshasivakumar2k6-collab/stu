@@ -1,123 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Result Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Portal</title>
 
-<style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    /* 🔥 Dark gradient background */
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
 
-/* 🔥 Glass card effect */
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 35px;
-    width: 350px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
-    text-align: center;
-    color: white;
-}
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-h1 {
-    margin-bottom: 20px;
-}
+        .container {
+            background: #f5f5f5;
+            padding: 40px;
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
 
-/* 🔥 Stylish inputs */
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    background: rgba(255,255,255,0.2);
-    color: white;
-    font-size: 14px;
-}
+        h1 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
 
-input::placeholder {
-    color: #ddd;
-}
+        .underline {
+            width: 60px;
+            height: 3px;
+            background: #3a7bd5;
+            margin: 10px auto 25px;
+            border-radius: 2px;
+        }
 
-/* 🔥 MODERN BUTTON */
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    color: white;
+        .input-box {
+            position: relative;
+            margin: 15px 0;
+        }
 
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    transition: 0.3s ease;
-}
+        .input-box input {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
 
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
-}
+        .input-box i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
 
-/* RESULT TEXT */
-.result {
-    margin-top: 20px;
-    font-weight: bold;
-}
+        .btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.error {
-    color: #ff4d4d;
-}
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+        }
 
-.success {
-    color: #00ffcc;
-}
-</style>
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
 
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>🎓 Student Result Portal</h1>
+    <div class="container">
+        <h1>Student Result Portal</h1>
+        <div class="underline"></div>
 
-    <input type="text" id="name" placeholder="Enter Name">
-    <input type="text" id="regno" placeholder="Enter Register Number">
+        <div class="input-box">
+            <input type="text" id="name" placeholder="Enter Name">
+            <i class="material-icons">person</i>
+        </div>
 
-    <button onclick="showResult()">🔍 Check Result</button>
+        <div class="input-box">
+            <input type="text" id="regno" placeholder="Enter Register Number">
+            <i class="material-icons">badge</i>
+        </div>
 
-    <div class="result" id="output"></div>
-</div>
+        <button class="btn" onclick="showResult()">
+            🔍 Check Result
+        </button>
 
-<script>
-function showResult() {
-    let name = document.getElementById("name").value;
-    let regno = document.getElementById("regno").value;
-    let output = document.getElementById("output");
+        <div id="output" class="result"></div>
+    </div>
 
-    if(name === "" || regno === "") {
-        output.innerHTML = "⚠ Please fill all fields!";
-        output.className = "result error";
-        return;
-    }
+    <script>
+        function showResult() {
+            let name = document.getElementById("name").value;
+            let regno = document.getElementById("regno").value;
+            let output = document.getElementById("output");
 
-    output.innerHTML =
-        "✅ Result for " + name + " (Reg No: " + regno + ") is PASS 🎉";
-    output.className = "result success";
-}
-</script>
+            if (name === "" || regno === "") {
+                output.innerHTML = "⚠ Please fill all fields!";
+                output.className = "result error";
+                return;
+            }
+
+            output.innerHTML =
+                "✅ Result for " + name + " (Reg No: " + regno + ") is PASS 🎉";
+            output.className = "result success";
+        }
+    </script>
 
 </body>
 </html>
