@@ -1,106 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Result Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Result Portal</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .container {
-            margin-top: 100px;
-            background: white;
-            padding: 30px;
-            width: 350px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 12px;
-            box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
-        }
+    /* 🔥 Dark gradient background */
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
 
-        h1 {
-            color: #333;
-        }
+/* 🔥 Glass card effect */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 35px;
+    width: 350px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    color: white;
+}
 
-        input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
+h1 {
+    margin-bottom: 20px;
+}
 
-        /* 🔥 UPDATED BUTTON */
-        button {
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            border: none;
-            color: white;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+/* 🔥 Stylish inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 14px;
+}
 
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
-        }
+input::placeholder {
+    color: #ddd;
+}
 
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 16px;
-        }
+/* 🔥 MODERN BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
 
-        .error {
-            color: red;
-        }
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    transition: 0.3s ease;
+}
 
-        .success {
-            color: green;
-        }
-    </style>
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+}
+
+/* RESULT TEXT */
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.error {
+    color: #ff4d4d;
+}
+
+.success {
+    color: #00ffcc;
+}
+</style>
+
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Student Result Portal</h1>
+<div class="container">
+    <h1>🎓 Student Result Portal</h1>
 
-        <input type="text" id="name" placeholder="Enter Name">
-        <input type="text" id="regno" placeholder="Enter Register Number">
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="regno" placeholder="Enter Register Number">
 
-        <!-- 🔥 UPDATED TEXT -->
-        <button onclick="showResult()">Get Result 🚀</button>
+    <button onclick="showResult()">🔍 Check Result</button>
 
-        <div class="result" id="output"></div>
-    </div>
+    <div class="result" id="output"></div>
+</div>
 
-    <script>
-        function showResult() {
-            let name = document.getElementById("name").value;
-            let regno = document.getElementById("regno").value;
-            let output = document.getElementById("output");
+<script>
+function showResult() {
+    let name = document.getElementById("name").value;
+    let regno = document.getElementById("regno").value;
+    let output = document.getElementById("output");
 
-            if(name === "" || regno === "") {
-                output.innerHTML = "⚠ Please fill all fields!";
-                output.className = "result error";
-                return;
-            }
+    if(name === "" || regno === "") {
+        output.innerHTML = "⚠ Please fill all fields!";
+        output.className = "result error";
+        return;
+    }
 
-            output.innerHTML =
-                "✅ Result for " + name + " (Reg No: " + regno + ") is PASS 🎉";
-            output.className = "result success";
-        }
-    </script>
+    output.innerHTML =
+        "✅ Result for " + name + " (Reg No: " + regno + ") is PASS 🎉";
+    output.className = "result success";
+}
+</script>
 
 </body>
 </html>
