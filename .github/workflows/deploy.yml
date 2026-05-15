@@ -1,0 +1,23 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: echo "Building project..."
+
+      - name: Test
+        run: echo "Testing project..."
+
+      - name: Deploy
+        run: echo "Deploying project..."
